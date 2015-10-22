@@ -1,0 +1,20 @@
+CS5220 Assignment 2: Shallow Water Simulation
+Review for Group 11 by Group 10
+
+
+It seems like you guys have done a good amount of performance profiling and have run quite a few simulations and experiments. Overall, the report also seems well compiled and organized.
+
+Profiling:
+The profiling results are well explained with reasoning. A few graphs of strong scaling and weak scaling comparing both your original as well as the subsequent implementations at optimization attempts could provide a better visualization for your results.
+
+Vectorization:
+I liked the idea of loop unrolling and serial tuning with vectorization and we too are planning to work on the same after having a hard time trying to naively parallelize the code.
+
+Parallelization:
+One thing I found nice about your attempts was that you guys started with simple reduction kernels and ran experiments on them using the different OMP constructs. The results are well compiled.
+
+Future Work Scope:
+As we all know, the key to getting the best performance for bigger input sizes is to get the domain decomposition working. I could not quite get how we could avoid synchronization among the processors after domain decomposition. I still believe that even though there is shared memory, the processors need to perform a barrier synchronization after the designated ‘n’ steps of computation equivalent to the number of layers of ghost cells you’ll pad to every processor’s block, since they have to write back to the main grid and make the new data available to other processors before the next parallel batch of ‘n’ steps.
+
+Overall, you guys are doing well and it would be interesting to see how your results progress.
+
